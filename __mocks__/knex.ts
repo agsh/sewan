@@ -48,17 +48,24 @@ const userDB = {
   id: 1,
 }
 
+const usersDB = [
+  {
+    name: 'a',
+    id: 1,
+  },
+  {
+    name: 'b',
+    id: 2,
+  },
+]
+
 export default (_config: any) => (table: any) => {
   return {
-    where: (query: any) => {
+    where: () => {
       switch (table) {
         case 'messages':
           return {
-            leftJoin: (join: any) => {
-              console.log(table)
-              console.log(query)
-              console.log(join)
-              console.log('?')
+            leftJoin: () => {
               switch (table) {
                 case 'messages':
                   return messageDB
@@ -78,9 +85,15 @@ export default (_config: any) => (table: any) => {
           return []
       }
     },
-    select: (query: any) => {
-      console.log(query)
-      return messagesDB
+    select: () => {
+      switch (table) {
+        case 'messages':
+          return messagesDB
+        case 'users':
+          return usersDB
+        default:
+          return []
+      }
     },
   }
 }

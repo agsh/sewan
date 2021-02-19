@@ -96,4 +96,52 @@ describe('user test', () => {
       ],
     })
   })
+
+  it('should fail with the wrong query', async () => {
+    await request(app)
+      .post('/graphql')
+      .send({
+        query: '{ user(id "1") { name } }',
+      })
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400)
+  })
+})
+
+describe('users test', () => {
+  it('should return proper value for the query', async () => {
+    const result = await request(app)
+      .post('/graphql')
+      .send({
+        query: '{ users { name, messages { type } } }',
+      })
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+    expect(result.body.data.users).toStrictEqual([
+      {
+        name: 'a',
+        messages: [
+          {
+            type: 'LOG',
+          },
+          {
+            type: 'HTTP',
+          },
+        ],
+      },
+      {
+        name: 'b',
+        messages: [
+          {
+            type: 'LOG',
+          },
+          {
+            type: 'HTTP',
+          },
+        ],
+      },
+    ])
+  })
 })
