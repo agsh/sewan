@@ -46,3 +46,8 @@ query {
   }
 }
 ```
+
+Project written in typescript, uses jest unit test, which covers 99% of source. Also query builder `knex`. 
+Sending email via `nodemailer`. Sending requests via `axios`.
+For code formatting there are `prettier` and `eslint`.
+And, of course `express-graphql`.
