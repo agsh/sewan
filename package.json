@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc --build tsconfig.json",
     "start": "npm run-script build && node ./build/app.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "migrate": "knex migrate:latest"
   },
   "dependencies": {
     "axios": "^0.21.1",
