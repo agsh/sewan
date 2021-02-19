@@ -1,13 +1,10 @@
-// Update with your config settings.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const config = require('config')
 
 module.exports = {
   development: {
     client: 'postgresql',
-    connection: {
-      database: 'postgres',
-      user: 'postgres',
-      password: '',
-    },
+    connection: config.get('db'),
     pool: {
       min: 2,
       max: 10,
@@ -19,11 +16,7 @@ module.exports = {
 
   staging: {
     client: 'postgresql',
-    connection: {
-      database: 'sewan',
-      user: 'postgres',
-      password: '',
-    },
+    connection: config.get('db'),
     pool: {
       min: 2,
       max: 10,
@@ -35,11 +28,7 @@ module.exports = {
 
   production: {
     client: 'postgresql',
-    connection: {
-      database: 'sewan',
-      user: 'postgres',
-      password: '',
-    },
+    connection: config.get('db'),
     pool: {
       min: 2,
       max: 10,

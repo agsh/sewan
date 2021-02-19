@@ -1,0 +1,30 @@
+{
+    "server": {
+        "port": 4567
+    },
+    "db": {
+        "host": "127.0.0.1",
+        "port": "5432",
+        "user": "postgres",
+        "password": "",
+        "database": "postgres"
+    },
+    "drivers": {
+        "http": {
+            "url": "/graphql"
+        },
+        "smtp": {
+            "transport": {
+                "host": "smtp.server.email",
+                "port": 587,
+                "secure": false,
+                "auth": {
+                    "user": "user",
+                    "pass": "pass"
+                }
+            },
+            "from": "user@smtp.server.email",
+            "to": "user@smtp.server.email"
+        }
+    }
+}

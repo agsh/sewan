@@ -1,4 +1,5 @@
 import express from 'express'
+import config from 'config'
 import { graphqlHTTP } from 'express-graphql'
 import schema from './schema'
 
@@ -10,8 +11,12 @@ app.use(
     graphiql: true,
   }),
 )
-export const server = app.listen(3000, () =>
-  console.log('Running a GraphQL API server at http://localhost:3000/graphql'),
+export const server = app.listen(config.get('server.port'), () =>
+  console.log(
+    `Running a GraphQL API server at http://localhost:${config.get(
+      'server.port',
+    )}/graphql`,
+  ),
 )
 
 export default app

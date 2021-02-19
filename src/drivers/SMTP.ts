@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer'
+import config from 'config'
 import Driver, { DriverOptions, Status, Type } from './Driver'
 
 export default class HTTP extends Driver {
@@ -8,19 +9,13 @@ export default class HTTP extends Driver {
 
   async start() {
     await this.change(Status.PENDING)
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.ethereal.email',
-      port: 587,
-      secure: false,
-      auth: {
-        user: 'user',
-        pass: 'user',
-      },
-    })
+    const transporter = nodemailer.createTransport(
+      config.get('drivers.smtp.transport'),
+    )
 
     await transporter.sendMail({
-      from: this.body,
-      to: this.body,
+      from: config.get('drivers.smtp.from'),
+      to: config.get('drivers.smtp.to'),
       subject: this.body,
       text: this.body,
     })
