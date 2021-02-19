@@ -1,0 +1,21 @@
+version: '3'
+services:
+#  back:
+#    environment:
+#      - DOCKER=true
+#    image: node
+#    ports:
+#      - '3000:3000'
+#    volumes:
+#      - .:/code
+#      - /code/back-end/node_modules
+#    working_dir: /code/back-end
+#    # command: 'sh -c "yarn && yarn migrate && yarn knex seed:run && yarn start"'
+#    depends_on:
+#      - postgres
+#    network_mode: host
+  postgres:
+    image: postgres:10.6-alpine
+    ports:
+      - '5432:5432'
+    network_mode: host

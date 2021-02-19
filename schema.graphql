@@ -1,0 +1,47 @@
+scalar ID
+scalar Date
+
+enum Type {
+    LOG
+    EMAIL
+    HTTP
+}
+
+enum Status {
+    CREATED
+    PENDING
+    FINISHED
+    ERROR
+}
+
+type History {
+    status: Status!
+    date: String!
+}
+
+type Message {
+    id: ID!
+    type: Type!
+    body: String!
+    history: [History!]
+}
+
+type User {
+    name: String
+    messages(status: String): [Message!]
+}
+
+type Query {
+    message(id: ID): Message
+    messages: [Message!]
+    user(name: String): User
+    users: [User!]
+}
+
+type Mutation {
+    send(
+        user: String!
+        type: Type!
+        body: String!): ID!
+}
+

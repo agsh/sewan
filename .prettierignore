@@ -1,0 +1,7 @@
+.jest_cache
+.jest_coverage
+build
+resources
+
+src/functions/graphql/schema.ts
+src/helpers/TypeValidationDict
