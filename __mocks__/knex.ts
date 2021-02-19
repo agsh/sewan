@@ -95,5 +95,19 @@ export default (_config: any) => (table: any) => {
           return []
       }
     },
+    insert: () => {
+      switch (table) {
+        case 'users':
+          return {
+            onConflict: () => ({
+              merge: () => ({}),
+            }),
+          }
+        case 'messages':
+          return [1]
+        default:
+          return []
+      }
+    },
   }
 }
