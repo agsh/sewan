@@ -1,11 +1,11 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import config from 'config'
 import { Driver, DriverOptions } from './Driver'
 import { Status, Type } from '../interfaces'
 
 /**
  * Deliver the message to the HTTP endpoint through the POST request
- * Url of the endpoint described in the `drivers.http.url` config
+ * Url of the endpoint described in the `drivers.http` config
  * @example
  * ```graphql
  * mutation {
@@ -20,7 +20,11 @@ export class HTTP extends Driver {
 
   async start(): Promise<void> {
     await this.change(Status.PENDING)
-    await axios.post(config.get('drivers.http.url'), this.body)
+    await axios({
+      method: 'post',
+      ...config.get('drivers.http'),
+      data: this.body,
+    } as AxiosRequestConfig)
     await this.change(Status.FINISHED)
   }
 }
