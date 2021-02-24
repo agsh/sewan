@@ -36,7 +36,7 @@ mutation {
 It creates the user, and the message in the db (user can later comes from auth system). Returns message id.
 And starts check the status of the message delivery. Statuses can be: STARTED, PENDING, FINISHED or an ERROR.
 
-After that we have four types of queries to check the status. The larger query to look at every entity is:
+After that we have four types of queries to check the status. The largest query to look at every entity is:
 ```graphql
 query {
   users {

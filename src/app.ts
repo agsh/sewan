@@ -5,6 +5,8 @@ import { graphqlHTTP } from 'express-graphql'
 import schema from './schema'
 
 const app = express()
+const port = config.get('server.port')
+
 app.use(morgan('dev'))
 app.use(
   '/graphql',
@@ -13,11 +15,9 @@ app.use(
     graphiql: true,
   }),
 )
-export const server = app.listen(config.get('server.port'), () =>
+export const server = app.listen(port, () =>
   console.log(
-    `Running a GraphQL API server at http://localhost:${config.get(
-      'server.port',
-    )}/graphql`,
+    `Running a GraphQL API server at http://localhost:${port}/graphql`,
   ),
 )
 

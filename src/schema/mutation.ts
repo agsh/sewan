@@ -1,5 +1,5 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql'
-import { HTTP, Log, SMTP } from '../drivers'
+import { HTTP, LOG, SMTP } from '../drivers'
 import { Driver } from '../drivers/Driver'
 
 export default new GraphQLObjectType({
@@ -20,7 +20,7 @@ export default new GraphQLObjectType({
         let driver: Driver
         switch (args.type) {
           case 'LOG':
-            driver = new Log({ body: args.body, name: args.user })
+            driver = new LOG({ body: args.body, name: args.user })
             break
           case 'HTTP':
             driver = new HTTP({ body: args.body, name: args.user })

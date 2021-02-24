@@ -3,6 +3,7 @@
         "port": 4567
     },
     "db": {
+        "client": "pg",
         "host": "127.0.0.1",
         "port": "5432",
         "user": "postgres",

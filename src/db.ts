@@ -9,7 +9,7 @@ let db: Knex
 export default async (): Promise<Knex> => {
   if (!db) {
     db = await Knex({
-      client: 'pg',
+      client: config.get('db.client'),
       connection: config.get('db'),
 
       seeds: {

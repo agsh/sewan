@@ -1,4 +1,5 @@
-import { Driver, DriverOptions, Status, Type } from './Driver'
+import { Driver, DriverOptions } from './Driver'
+import { Status, Type } from '../interfaces'
 
 /**
  * Write the message to the stdout
@@ -9,7 +10,7 @@ import { Driver, DriverOptions, Status, Type } from './Driver'
  * }
  * ```
  */
-export class Log extends Driver {
+export class LOG extends Driver {
   constructor(options: DriverOptions) {
     super({ type: Type.LOG, ...options })
   }
@@ -21,4 +22,4 @@ export class Log extends Driver {
   }
 }
 
-export default Log
+export default LOG

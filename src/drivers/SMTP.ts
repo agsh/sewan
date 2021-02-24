@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer'
 import config from 'config'
-import { Driver, DriverOptions, Status, Type } from './Driver'
+import { Driver, DriverOptions } from './Driver'
+import { Status, Type } from '../interfaces'
 
 /**
  * Send the message to the e-mail

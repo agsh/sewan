@@ -49,4 +49,17 @@ describe('send test', () => {
     expect(result.body.data.send).toStrictEqual('1')
     expect(nodemailer.createTransport().sendMail).toBeCalledTimes(1)
   })
+
+  it('should throw an error if the driver does not present', async () => {
+    console.log = jest.fn()
+    const result = await request(app)
+      .post('/graphql')
+      .send({
+        query: 'mutation { send(user: "a", type: "NONE", body: "a") }',
+      })
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+    expect(result.body.errors.length).toBeGreaterThan(0)
+  })
 })

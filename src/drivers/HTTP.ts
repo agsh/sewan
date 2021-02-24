@@ -1,6 +1,7 @@
 import axios from 'axios'
 import config from 'config'
-import { Driver, DriverOptions, Status, Type } from './Driver'
+import { Driver, DriverOptions } from './Driver'
+import { Status, Type } from '../interfaces'
 
 /**
  * Deliver the message to the HTTP endpoint through the POST request
