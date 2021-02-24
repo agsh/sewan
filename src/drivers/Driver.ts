@@ -13,6 +13,25 @@ export enum Status {
   ERROR = 'ERROR',
 }
 
+export interface History {
+  status: Status
+  date: string
+  message: number
+}
+
+export interface Message {
+  id: number
+  body: string
+  type: Type
+  history: History[]
+  user: number
+}
+
+export interface User {
+  name: string
+  messages: Array<Message>
+}
+
 export interface DriverOptions {
   name: string
   body: string
@@ -97,12 +116,12 @@ export abstract class Driver {
     })
   }
 
-  static async getUser(name: string): Promise<any> {
+  static async getUser(name: string): Promise<User> {
     const db = await dbConnect()
     return db('users').where({ name }).first()
   }
 
-  static async getUsers(): Promise<any> {
+  static async getUsers(): Promise<User[]> {
     const db = await dbConnect()
     return db('users').select()
   }
@@ -112,7 +131,7 @@ export abstract class Driver {
    * This method explicitly gets the history of the statuses for the speed-up
    * @param id
    */
-  static async getMessage(id: number | string): Promise<any> {
+  static async getMessage(id: number | string): Promise<Message> {
     const db = await dbConnect()
     const result = await db('messages')
       .where({
@@ -133,12 +152,12 @@ export abstract class Driver {
     )
   }
 
-  static async getMessages(): Promise<any> {
+  static async getMessages(): Promise<Message[]> {
     const db = await dbConnect()
     return db('messages').select()
   }
 
-  static async getMessagesByUser(name: string): Promise<any> {
+  static async getMessagesByUser(name: string): Promise<Message[]> {
     const db = await dbConnect()
     const result = await db('users')
       .where({
@@ -148,7 +167,7 @@ export abstract class Driver {
     return result
   }
 
-  static async getHistory(message: number | string): Promise<any> {
+  static async getHistory(message: number | string): Promise<History[]> {
     const db = await dbConnect()
     const result = await db('history').where({
       message,
