@@ -38,6 +38,12 @@ export abstract class Driver {
    */
   private id: number | undefined
 
+  /**
+   * Send message
+   * @param options
+   * @param options.type Can be one of the: 'LOG', 'SMTP', 'HTTP'
+   * @protected
+   */
   protected constructor(options: CommonDriverOptions) {
     this.name = options.name
     this.body = options.body

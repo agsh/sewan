@@ -4,6 +4,10 @@ import { Driver } from '../drivers/Driver'
 
 export default new GraphQLObjectType({
   name: 'Mutation',
+  /**
+   * Send message
+   *
+   */
   fields: () => ({
     send: {
       type: GraphQLString,

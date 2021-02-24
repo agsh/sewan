@@ -104,9 +104,22 @@
 					<div class="tsd-signature tsd-kind-icon">History<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">GraphQLObjectType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/agsh/sewan/blob/702468e/src/schema/index.ts#L12">schema/index.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/agsh/sewan/blob/a16f056/src/schema/index.ts#L16">schema/index.ts:16</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>History type</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>property</dt>
+							<dd><p>status Status</p>
+							</dd>
+							<dt>property</dt>
+							<dd><p>date Time when the status changed</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
 					<a name="message" class="tsd-anchor"></a>
@@ -114,9 +127,28 @@
 					<div class="tsd-signature tsd-kind-icon">Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">GraphQLObjectType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/agsh/sewan/blob/702468e/src/schema/index.ts#L21">schema/index.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/agsh/sewan/blob/a16f056/src/schema/index.ts#L32">schema/index.ts:32</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Message type</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>property</dt>
+							<dd><p>type Type of the message. One of &#39;LOG&#39;, &#39;SMTP&#39;, &#39;HTTP&#39;</p>
+							</dd>
+							<dt>property</dt>
+							<dd><p>body Body of the message</p>
+							</dd>
+							<dt>property</dt>
+							<dd><p>history Array of message statuses</p>
+							</dd>
+							<dt>property</dt>
+							<dd><p>messages Messages array</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
 					<a name="user" class="tsd-anchor"></a>
@@ -124,13 +156,21 @@
 					<div class="tsd-signature tsd-kind-icon">User<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">GraphQLObjectType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/agsh/sewan/blob/702468e/src/schema/index.ts#L44">schema/index.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/agsh/sewan/blob/a16f056/src/schema/index.ts#L57">schema/index.ts:57</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>User</p>
+							<p>User type</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>property</dt>
+							<dd><p>name User&#39;s name</p>
+							</dd>
+							<dt>property</dt>
+							<dd><p>messages Messages array</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
