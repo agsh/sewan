@@ -1,9 +1,13 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql'
 import { HTTP, Log, SMTP } from '../drivers'
-import Driver from '../drivers/Driver'
+import { Driver } from '../drivers/Driver'
 
 export default new GraphQLObjectType({
   name: 'Mutation',
+  /**
+   * Send message
+   *
+   */
   fields: () => ({
     send: {
       type: GraphQLString,
@@ -22,6 +26,7 @@ export default new GraphQLObjectType({
             driver = new HTTP({ body: args.body, name: args.user })
             break
           case 'SMTP':
+          case 'EMAIL':
             driver = new SMTP({ body: args.body, name: args.user })
             break
           default:

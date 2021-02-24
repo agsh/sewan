@@ -1,0 +1,199 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>sewan</title>
+	<meta name="description" content="Documentation for sewan">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">sewan</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>sewan</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#running" id="running" style="color: inherit; text-decoration: none;">
+					<h2>Running</h2>
+				</a>
+				<a href="#simple-with-the-docker-compose" id="simple-with-the-docker-compose" style="color: inherit; text-decoration: none;">
+					<h3>Simple with the docker-compose</h3>
+				</a>
+				<pre><code><span style="color: #001080">docker</span><span style="color: #000000">-</span><span style="color: #001080">compose</span><span style="color: #000000"> </span><span style="color: #001080">up</span>
+</code></pre>
+				<p>Then we can go to <code>http://localhost:4567/</code> and start with the GraphiQL </p>
+				<a href="#local-running" id="local-running" style="color: inherit; text-decoration: none;">
+					<h3>Local running</h3>
+				</a>
+				<ul>
+					<li>Install postgresql</li>
+					<li>Install node packages: <code>npm i</code></li>
+					<li>Setup you database and other settings here: <a href="./configure/default.json">./configure/default.json</a></li>
+					<li>Make the db migrations: <code>npm run migrate</code></li>
+					<li>Start the app: <code>npm start</code></li>
+				</ul>
+				<a href="#tests" id="tests" style="color: inherit; text-decoration: none;">
+					<h3>Tests</h3>
+				</a>
+				<p><code>npm test</code></p>
+				<a href="#class-documentation" id="class-documentation" style="color: inherit; text-decoration: none;">
+					<h2>Class documentation</h2>
+				</a>
+				<p>Can be found at <a href="https://agsh.github.io/sewan/">./docs/index.html</a></p>
+				<a href="#description" id="description" style="color: inherit; text-decoration: none;">
+					<h2>Description</h2>
+				</a>
+				<p>You can look at GraphQL schema here: <a href="./schema.graphql">./schema.graphql</a>. It consists of three entities:</p>
+				<ul>
+					<li>User who sends the message</li>
+					<li>Message itself</li>
+					<li>History of the message statuses</li>
+				</ul>
+				<a href="#mutation" id="mutation" style="color: inherit; text-decoration: none;">
+					<h3>Mutation</h3>
+				</a>
+				<p>It calls <code>send</code> and it works with three transports: LOG, HTTP(POST to the HTTP-resource) and SMTP(e-mail).
+				The last two transports can be configured via the config. The example of usage:</p>
+				<pre><code class="language-graphql"><span style="color: #0000FF">mutation</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">send</span><span style="color: #000000">(</span><span style="color: #001080">user</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;a&quot;</span><span style="color: #000000">, </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;LOG&quot;</span><span style="color: #000000">, </span><span style="color: #001080">body</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;a&quot;</span><span style="color: #000000">)</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>It creates the user, and the message in the db (user can later comes from auth system). Returns message id.
+				And starts check the status of the message delivery. Statuses can be: STARTED, PENDING, FINISHED or an ERROR.</p>
+				<p>After that we have four types of queries to check the status. The larger query to look at every entity is:</p>
+				<pre><code class="language-graphql"><span style="color: #0000FF">query</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">users</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">name</span>
+<span style="color: #000000">    </span><span style="color: #001080">messages</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">type</span>
+<span style="color: #000000">      </span><span style="color: #001080">id</span>
+<span style="color: #000000">      </span><span style="color: #001080">history</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">status</span>
+<span style="color: #000000">        </span><span style="color: #001080">date</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<p>Project written in typescript, uses jest unit test, which covers 99% of source. Also query builder <code>knex</code>.
+					Sending email via <code>nodemailer</code>. Sending requests via <code>axios</code>.
+					For code formatting there are <code>prettier</code> and <code>eslint</code>.
+				And, of course <code>express-graphql</code>.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/app.html">app</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/db.html">db</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/drivers.html">drivers</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/drivers_driver.html">drivers/<wbr>Driver</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/drivers_http.html">drivers/HTTP</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/drivers_log.html">drivers/<wbr>Log</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/drivers_smtp.html">drivers/SMTP</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/schema.html">schema</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/schema_mutation.html">schema/mutation</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/schema_query.html">schema/query</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

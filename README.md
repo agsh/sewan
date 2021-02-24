@@ -9,12 +9,18 @@ Then we can go to `http://localhost:4567/` and start with the GraphiQL
 ### Local running
 * Install postgresql
 * Install node packages: `npm i`
-* Setup you database and other settings here: `./configure/default.json`
+* Setup you database and other settings here: [/config/default.json](/config/default.json)
 * Make the db migrations: `npm run migrate`
 * Start the app: `npm start`
 
+### Tests
+`npm test`
+
+## Class documentation
+Can be found at [/docs/index.html](https://agsh.github.io/sewan/)
+
 ## Description
-You can look at GraphQL schema here: `./schema.graphql`. It consists of three entities:
+You can look at GraphQL schema here: [/schema.graphql](/schema.graphql). It consists of three entities:
 * User who sends the message
 * Message itself
 * History of the message statuses
