@@ -13,6 +13,12 @@ Then we can go to `http://localhost:4567/` and start with the GraphiQL
 * Make the db migrations: `npm run migrate`
 * Start the app: `npm start`
 
+### Tests
+`npm test`
+
+## Class documentation
+Can be found at [./docs/index.html](./docs/index.html)
+
 ## Description
 You can look at GraphQL schema here: `./schema.graphql`. It consists of three entities:
 * User who sends the message

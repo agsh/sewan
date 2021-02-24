@@ -1,5 +1,5 @@
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql'
-import Driver from '../drivers/Driver'
+import { Driver } from '../drivers/Driver'
 import { Message, User } from './index'
 
 export default new GraphQLObjectType({

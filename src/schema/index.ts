@@ -7,7 +7,7 @@ import {
 } from 'graphql'
 import mutation from './mutation'
 import query from './query'
-import Driver from '../drivers/Driver'
+import { Driver } from '../drivers/Driver'
 
 export const History = new GraphQLObjectType({
   name: 'History',
@@ -38,6 +38,9 @@ export const Message = new GraphQLObjectType({
   }),
 })
 
+/**
+ * User
+ */
 export const User = new GraphQLObjectType({
   name: 'User',
   description: 'User',

@@ -1,10 +1,20 @@
 import axios from 'axios'
 import config from 'config'
-import Driver, { DriverOptions, Status, Type } from './Driver'
+import { Driver, DriverOptions, Status, Type } from './Driver'
 
-export default class HTTP extends Driver {
+/**
+ * Deliver the message to the HTTP endpoint through the POST request
+ * Url of the endpoint described in the `drivers.http.url` config
+ * @example
+ * ```graphql
+ * mutation {
+ *   send(user: "user", type: "HTTP", body: "post body")
+ * }
+ * ```
+ */
+export class HTTP extends Driver {
   constructor(options: DriverOptions) {
-    super({ type: Type.LOG, ...options })
+    super({ type: Type.HTTP, ...options })
   }
 
   async start(): Promise<void> {
@@ -13,3 +23,5 @@ export default class HTTP extends Driver {
     await this.change(Status.FINISHED)
   }
 }
+
+export default HTTP

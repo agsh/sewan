@@ -22,29 +22,50 @@ interface CommonDriverOptions extends DriverOptions {
   type: Type
 }
 
-export default abstract class Driver {
+/**
+ * Common abstract class for all drivers
+ */
+export abstract class Driver {
   private readonly name: string
 
   public readonly body: string
 
   private readonly type: Type
 
+  /**
+   * Id of the message in the database
+   * @private
+   */
   private id: number | undefined
 
-  constructor(options: CommonDriverOptions) {
+  protected constructor(options: CommonDriverOptions) {
     this.name = options.name
     this.body = options.body
     this.type = options.type
   }
 
+  /**
+   * Start delivering the message
+   * Method creates new message in the DB with the status CREATED
+   * and handles all errors
+   */
   async run(): Promise<number> {
     await this.change(Status.CREATED)
     this.start().catch((_error) => this.change(Status.ERROR))
     return this.id!
   }
 
+  /**
+   * Common method for all heirs to implement
+   * Starts the delivery of the message
+   */
   abstract start(): Promise<void>
 
+  /**
+   * Change the message status.
+   * Also creates user or message if they don't exist
+   * @param status
+   */
   async change(status: Status): Promise<void> {
     const db = await dbConnect()
     await db('users')
@@ -80,6 +101,11 @@ export default abstract class Driver {
     return db('users').select()
   }
 
+  /**
+   * Get the message information with all status changes
+   * This method explicitly gets the history of the statuses for the speed-up
+   * @param id
+   */
   static async getMessage(id: number | string): Promise<any> {
     const db = await dbConnect()
     const result = await db('messages')
@@ -127,3 +153,5 @@ export default abstract class Driver {
     }))
   }
 }
+
+export default Driver

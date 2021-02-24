@@ -1,6 +1,6 @@
-import Driver, { DriverOptions, Status, Type } from './Driver'
+import { Driver, DriverOptions, Status, Type } from './Driver'
 
-export default class Log extends Driver {
+export class Log extends Driver {
   constructor(options: DriverOptions) {
     super({ type: Type.LOG, ...options })
   }
@@ -11,3 +11,5 @@ export default class Log extends Driver {
     await this.change(Status.FINISHED)
   }
 }
+
+export default Log

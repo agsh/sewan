@@ -45,6 +45,7 @@ module.exports = {
 
         '@typescript-eslint/no-explicit-any': 0,
         '@typescript-eslint/ban-ts-ignore': 0,
+        '@typescript-eslint/no-non-null-assertion': 0,
 
         'import/extensions': 0,
         'no-shadow': 0,
